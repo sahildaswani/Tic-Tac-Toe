@@ -21,21 +21,43 @@ Render()
 
 // Event once box is clicked
 document.onclick = function(e) {
-    if (hasClass(e.target, 'target')) {
+    if (hasClass(e.target, 'untargetted')) {
+        return
+    } else if (hasClass(e.target, 'target')) {
+        if (activeGame == true){
+            e.target.style.color = "black"
+            if (player1 == true){
+                SetMarker(e.target, "X")
+            } else {
+                SetMarker(e.target, "O")
+            }
+        }
+    }
+}
+
+document.onmouseover = function(e) {
+    if (hasClass(e.target, 'untargetted')) {
+        return
+    } else if (hasClass(e.target, 'target')) {
         if (e.target.innerHTML == "" && activeGame == true){
+            e.target.style.color = "grey"
             if (player1 == true){
                 e.target.innerHTML = "X"
-                text.innerHTML = "Player 2's turn"
-                turnNumber += 1
-                CheckBoxes()
-                player1 = false
             } else {
                 e.target.innerHTML = "O"
-                text.innerHTML = "Player 1's turn"
-                turnNumber += 1
-                CheckBoxes()
-                player1 = true
             }
+        }
+    }
+}
+
+document.onmouseout = function(e) {
+    if (hasClass(e.target, 'untargetted')) {
+        return
+    } else if (hasClass(e.target, 'target')) {
+        if (player1 == true){
+            e.target.innerHTML = ""
+        } else {
+            e.target.innerHTML = ""
         }
     }
 }
@@ -106,6 +128,23 @@ function CheckBoxes() {
         } else if (turnNumber >= 9) {
             text.innerHTML = "Draw"
         }
+    }
+}
+
+function SetMarker(target, html) {
+    target.innerHTML = html
+    target.setAttribute("class", "target untargetted")
+    if (player1 == false) {
+        text.innerHTML = "Player 1's turn"
+    }  else {
+        text.innerHTML = "Player 2's turn"
+    }
+    turnNumber += 1
+    CheckBoxes()
+    if (player1 == false) {
+        player1 = true
+    } else {
+        player1 = false
     }
 }
 
