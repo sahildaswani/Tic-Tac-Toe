@@ -1,0 +1,35 @@
+body {
+    padding-top: 2px;
+    text-align: center;
+}
+
+div {
+    vertical-align: top;
+}
+
+div > h1 {
+    font-size: 50px;
+    margin: 10px;
+}
+
+.target {
+   width: 100px;
+   height: 100px;
+   border: 1px solid black;
+   display: inline-block;
+   font: 5em sans-serif; 
+   text-align: center;
+}
+
+.row {
+    text-align: center;
+}
+
+#restartbtn {
+    margin: 5px;
+}
+
+#gameText {
+    font-size: 20px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
